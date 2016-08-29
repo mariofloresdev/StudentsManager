@@ -1,30 +1,18 @@
 
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.text.DecimalFormat;
 import java.util.Formatter;
 
-public class Student {
-	
-	private String name, id;
+public class Student extends Human{
 	private float gpa;
 	
-	Student(String name, int number, float gpa){
-		this.setName(name);
+	Student(String name, double number, float gpa){
+		super(name,number);
 		this.setGpa(gpa);
-		generateId(number);
+		generateId();
 		
 	}
 	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public float getGpa() {
 		return gpa;
 	}
@@ -37,13 +25,11 @@ public class Student {
 		return id;
 	}
 	
-	private void generateId(int number){
-		DateFormat df = new SimpleDateFormat("yyyy");
-		Date date = new Date();
+	protected void generateId(){
 		Formatter f = new Formatter();
+		DecimalFormat df = new DecimalFormat("000");
 		
-		System.out.println();
-		id = (df.format(date)+"-"+f.format("%03d", number));
+		id = ("Student-"+df.format(number));
 		f.close();
 		
 		
