@@ -1,20 +1,16 @@
 import java.util.ArrayList;
-import org.joda.time.LocalTime;
+
 
 public class Course {
-	private String name;
+	protected String name;
 	ArrayList<Teacher> teachers;
-	private LocalTime from, to;
+	ArrayList<CourseInstance> instances;
+	
 	public Course(String name){
 		this.name = name;
 		teachers = new ArrayList<>();
+		instances = new ArrayList<>();
 	}
-	
-	public void setHours(int fromHour, int fromMinute, int toHour, int toMinute){
-		setFrom(new LocalTime(fromHour, fromMinute));
-		setTo(new LocalTime(toHour, toMinute));
-	}
-	
 	
 	public void addTeacher(Teacher t){
 		teachers.add(t);
@@ -23,22 +19,15 @@ public class Course {
 	public String getName(){
 		return name;
 	}
-
-	public LocalTime getTo() {
-		return to;
+	
+	public void createInstance(Teacher t){
+		CourseInstance ci =new CourseInstance(this, instances.size()+1 );
+		ci.setTeacher(t);
+		instances.add(ci);
+		
 	}
 
-	public void setTo(LocalTime to) {
-		this.to = to;
-	}
 
-	public LocalTime getFrom() {
-		return from;
-	}
-
-	public void setFrom(LocalTime from) {
-		this.from = from;
-	}
 	
 	
 
